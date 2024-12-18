@@ -1,15 +1,12 @@
 import React from 'react'
 import { AiFillGoogleCircle } from 'react-icons/ai'
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from 'firebase/auth'
-import { app } from '../utils/firebase.js'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext.jsx'
 
 function Oauth() {
 
-    const { googleSignIn, user } = useAuth();
+    const { googleSignIn } = useAuth();
     const navigate = useNavigate()
-    const auth = getAuth(app)
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
@@ -20,15 +17,6 @@ function Oauth() {
           console.log(error.message);
         }
       };
-
-      const handleLogout = async (e) => {
-        try {
-            await signOut(auth);
-            console.log('log out')
-        } catch (error) {
-            console.log(error.message)
-        }
-      }
 
     return (
         <>
@@ -44,9 +32,6 @@ function Oauth() {
                     className='w-6 h-6 mr-2 bg-blue-600' />
                     Continue with google
                 </button>
-                {/* <Link to={user ? '/dashboard' : '/'} className='text-white'>go to dashboard</Link> */}
-
-                {/* <button onClick={handleLogout}>Logout</button> */}
             </div>
         </>
     )

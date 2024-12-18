@@ -24,7 +24,6 @@ export function UserAuthContextProvider({ children }) {
           provider.setCustomParameters({ prompt: 'select_account' })
           try {
               const resultFromGoogle = await signInWithPopup(auth, provider)
-              const response = await resultFromGoogle
               Navigate('/dashboard')
           } catch (error) {
           console.log(error)
@@ -33,7 +32,6 @@ export function UserAuthContextProvider({ children }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-          console.log("Auth", currentuser);
           setUser(currentuser);
         });
     
