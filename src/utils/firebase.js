@@ -8,7 +8,7 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCR5FxB9gFO6X_gcy8BCkD8GsA359vLKgM",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "alarm-scheduler-a604e.firebaseapp.com",
   projectId: "alarm-scheduler-a604e",
   storageBucket: "alarm-scheduler-a604e.firebasestorage.app",
