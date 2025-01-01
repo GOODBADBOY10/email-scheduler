@@ -1,10 +1,11 @@
 import React from 'react'
-// import Dash from '../components/Dash'
+import Try from '../components/Try'
+
 
 const Dashboard = () => {
   return (
     <div>
-      
+      <Try />
     </div>
   )
 }

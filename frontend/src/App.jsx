@@ -2,7 +2,6 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Oauth from './pages/Oauth'
 import Dashboard from './pages/Dashboard'
-import Try from './components/Try'
 import PrivateRoute from './components/PrivateRoute'
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
           <Route path="/" element={<Oauth />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path="/try" element={<Try />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
 
         </Routes>

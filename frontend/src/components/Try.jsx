@@ -98,13 +98,18 @@ const Try = () => {
             alert('Please fill in all fields')
             return;
         }
-        fetch('http://localhost:3000/api/send-email', {
+        fetch('https://email-rhpy1iql3-adebisi-s-projects.vercel.app/api/send-email', {
+            mode: 'no-cors',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, subject, text }),
-        }).then((response) => response.json()).then((data) => {
+            body: JSON.stringify({ email, subject, text })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            setAlarms(data)
+            console.log(alarms);
             console.log(data);
             setSent(true);
         })

@@ -16,7 +16,7 @@ function Oauth() {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/try");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
     }
