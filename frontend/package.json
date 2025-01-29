@@ -13,11 +13,13 @@
     "@emailjs/browser": "^4.4.1",
     "axios": "^1.7.9",
     "firebase": "^11.1.0",
+    "flowbite-react": "^0.10.2",
     "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-datepicker": "^7.5.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^7.0.2",
     "smtpexpress": "^0.0.15"
   },

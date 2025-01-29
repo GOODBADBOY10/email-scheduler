@@ -2,12 +2,18 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import { UserAuthContextProvider } from './context/authContext.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import { AlarmProvider } from './context/alarmContext.jsx'
+import { AuthProvider } from './context/authContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <UserAuthContextProvider>
-      <App />
-    </UserAuthContextProvider>
-  </StrictMode>,
+  <BrowserRouter>
+    <StrictMode>
+      <AuthProvider>
+        <AlarmProvider>
+          <App />
+        </AlarmProvider>
+      </AuthProvider>
+    </StrictMode>,
+  </BrowserRouter>
 )
