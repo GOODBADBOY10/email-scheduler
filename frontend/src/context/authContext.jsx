@@ -1,51 +1,19 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from 'firebase/auth'
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../utils/firebase";
-import { Navigate } from "react-router-dom";
+import { createContext, useState, useContext } from "react";
 
-const authContext = createContext();
+const AuthContext = createContext();
 
-export function useAuth() {
-    return useContext(authContext);
-}  
+const useAuth = () => {
+    return useContext(AuthContext);
+}
 
 
-
-export function UserAuthContextProvider({ children }) {
-    const [user, setUser] = useState({});
-
-    function logOut() {
-      return signOut(auth);
-    }
-
-    async function googleSignIn() {
-      const provider = new GoogleAuthProvider()
-          provider.setCustomParameters({ prompt: 'select_account' })
-          try {
-              const resultFromGoogle = await signInWithPopup(auth, provider)
-              Navigate('/dashboard')
-          } catch (error) {
-          console.log(error)
-          }
-    }
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-          setUser(currentuser);
-        });
-    
-        return () => {
-          unsubscribe();
-        };
-      }, []);
-  
-  
+const AuthProvider = ({ children }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
     return (
-      <authContext.Provider
-        value={{ user, logOut, googleSignIn }}
-      >
-        {children}
-      </authContext.Provider>
-    );
-  }
+        <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export { AuthProvider, AuthContext, useAuth };
