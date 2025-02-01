@@ -6,12 +6,13 @@ import Right from '../assets/right.png'
 import Google from '../assets/google.png'
 import { useAuth } from '../context/authContext'
 
+
 function Oauth() {
-  const { setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated, login } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    console.log('clikced')
+    await login();
     navigate('/dashboard',{ replace: true });
     setIsAuthenticated(true);
   }
@@ -32,7 +33,6 @@ function Oauth() {
             </div>
             {/* Login form */}
             <div className='login-form px-14 border border-l-0 border-r-0 py-7'>
-              <form className=''>
                 <h1 
                 className='font-semibold text-[#000000] text-2xl leading-10 text-center mb-1'>Set Future Plans And Get A Reminder With Ease.</h1>
                 <p 
@@ -50,7 +50,6 @@ function Oauth() {
                   />
                   Log in with google
                 </button>
-              </form>
             </div>
           </div>
           {/* Right side */}
