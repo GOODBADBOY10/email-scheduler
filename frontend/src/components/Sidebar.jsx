@@ -9,12 +9,16 @@ import { useAuth } from '../context/authContext'
 
 
 const Sidebar = () => {
-    const { setIsAuthenticated } = useAuth();
+    const { setIsAuthenticated, logout } = useAuth();
     const navigate = useNavigate()
     const location = useLocation();
 
-    const handleLogout = () => {
-        console.log('logout');
+    const handleLogout = async () => {
+        try {
+            await logout();
+        } catch (error) {
+            console.error(error);
+        }
         navigate('/', { replace: true });
         setIsAuthenticated(false)
     }

@@ -1,11 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
+import profile from '../assets/profile.png'
 import { useAlarm } from '../context/alarmContext';
+import { useAuth } from '../context/authContext';
 
 const Overview = () => {
     const navigate = useNavigate()
     const { alarms } = useAlarm();
+    const { user } = useAuth();
 
     return (
         <div>
@@ -36,14 +39,14 @@ const Overview = () => {
                         </div>
                     </div>
                     <div className='profile'>
-                        {/* <img src={user ? user.photoURL : profile} alt="profile" className='w-8 h-8 rounded-full' /> */}
+                        <img src={user ? user.photoURL : profile} alt="profile" className='w-8 h-8 rounded-full' />
                     </div>
                 </div>
                 {/* Alarms dasboard text */}
                 <div className='px-3 flex items-center justify-between w-full h-24 bg-zinc-100 rounded-xl'>
                     <div>
                         <h3 className='text-3xl font-normal text-[#3C50D1]'>Dashboard</h3>
-                        {/* <p className='text-[#7F7F7F] text-base'>Welcome, <span className='mx-2 font-semibold text-lg'>{user ? user.displayName : 'SAM'}</span>let’s begin planning the future!!!</p> */}
+                        <p className='text-[#7F7F7F] text-base'>Welcome, <span className='mx-2 font-semibold text-lg'>{user ? user.displayName : 'SAM'}</span>let’s begin planning the future!!!</p>
                     </div>
                     <div
                         onClick={() => navigate('/dashboard/schedule')}

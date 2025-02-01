@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
-import { app } from '../utils/firebase';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReactQuill from 'react-quill';
@@ -9,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import profile from '../assets/profile.png'
 import { useAlarm } from '../context/alarmContext';
 import { FaPlus, FaTimes } from 'react-icons/fa';
+import { useAuth } from '../context/authContext';
 
 const Schedule = () => {
     const [alarmTime, setAlarmTime] = useState('')
@@ -20,9 +18,7 @@ const Schedule = () => {
     const [newEmail, setNewEmail] = useState('')
     const [text, setText] = useState('')
     const [category, setCategory] = useState('');
-    const auth = getAuth(app)
-    const navigate = useNavigate()
-    // const { user } = useAuth();
+    const { user } = useAuth();
 
     const { addAlarm, alarms, setAlarms } = useAlarm();
 
@@ -61,7 +57,6 @@ const Schedule = () => {
                 triggerNotification(alarm)
                 alarm.notified = true;
                 alert(`Your alarm ${alarm.subject} with the description of ${alarm.text} is due at ${alarm.time}`)
-                saveAlarms(alarms); // Save the updated task state
             }
         });
     };
@@ -197,7 +192,7 @@ const Schedule = () => {
                         </div>
                     </div>
                     <div className='profile'>
-                        {/* <img src={user ? user.photoURL : profile} alt="profile" className='w-8 h-8 rounded-full' /> */}
+                        <img src={user ? user.photoURL : profile} alt="profile" className='w-8 h-8 rounded-full' />
                     </div>
                 </div>
 
