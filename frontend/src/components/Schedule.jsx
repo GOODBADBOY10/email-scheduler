@@ -7,6 +7,7 @@ import profile from '../assets/profile.png'
 import { useAlarm } from '../context/alarmContext';
 import { FaPlus, FaTimes } from 'react-icons/fa';
 import { useAuth } from '../context/authContext';
+import { htmlToText } from 'html-to-text';
 
 const Schedule = () => {
     const [alarmTime, setAlarmTime] = useState('')
@@ -105,6 +106,8 @@ const Schedule = () => {
         setEmail(email.filter((em) => em !== ema))
     }
 
+    const plaintext = htmlToText(text);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!subject || !alarmTime || !text || !selectedDate || !email || !category) {
@@ -116,7 +119,7 @@ const Schedule = () => {
 
         var raw = JSON.stringify({
             email,
-            text,
+            text: plaintext,
             subject,
         });
 
@@ -132,10 +135,11 @@ const Schedule = () => {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
 
+
         const newAlarm = {
             subject,
             time: formatTime,
-            text,
+            text: plaintext,
             date: formatDate,
             notified: false,
             category,
@@ -163,6 +167,7 @@ const Schedule = () => {
         setNewEmail('')
         setCategory('')
     }
+
     return (
         <div className='w-full'>
             <div className="pl-4 pr-10">
